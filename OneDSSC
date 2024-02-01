@@ -31,3 +31,5 @@ contourf(x, y, T', 20, 'LineColor', 'none');
 colorbar;
 xlabel('Distance (m)');
 title('1D Steady State Conduction - Contour Plot');
+ grid on;
+    pause(0.1)
