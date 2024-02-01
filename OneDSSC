@@ -1,0 +1,33 @@
+% 1D Steady State Conduction %
+
+% Define parameters
+L = 1;              % Length of the rod (m)
+T_initial = 100;    % Initial conditions temperature (°C)
+
+T_boundary = 200;   % Boundary temperature (°C) conditions
+
+k = 0.01;           % Thermal conductivity
+
+% Discretization
+Nx = 50;             
+dx = L / (Nx - 1);   
+
+% Initial conditions
+T = ones(Nx, 1) * T_initial;
+
+% Boundary conditions
+T(1) = T_boundary;
+T(end) = T_boundary;
+
+% Steady-state solution
+for i = 2:Nx-1
+    T(i) = T_boundary - (T_boundary - T_initial) / L * (i - 1) * dx;
+end
+
+% Create a contour plot
+x = linspace(0, L, Nx);
+y = zeros(size(x));
+contourf(x, y, T', 20, 'LineColor', 'none');
+colorbar;
+xlabel('Distance (m)');
+title('1D Steady State Conduction - Contour Plot');
